@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: Product API
+  description: API for managing products
+  version: "1.0"
+paths:
+  /api/v1/products/{id}:
+    get:
+      summary: Get product by ID
+      description: Retrieve a product by its unique identifier.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the product
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+  /api/v1/products:
+    post:
+      summary: Create a new product
+      description: Adds a new product to the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductRequest"
+      responses:
+        "201":
+          description: Product created successfully
+        "400":
+          description: Invalid product data
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+          format: double
+    ProductRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+          format: double

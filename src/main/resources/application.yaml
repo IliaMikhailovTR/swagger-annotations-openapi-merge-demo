@@ -1,0 +1,11 @@
+#springdoc:
+#  swagger-ui:
+#    url: /openapi-product.yaml
+#    urls:
+#      - url: /openapi-product.yaml
+#        name: Product
+#      - url: /openapi-user.json
+#        name: User
+#springdoc:
+#  api-docs:
+#    path: /doc-swagger

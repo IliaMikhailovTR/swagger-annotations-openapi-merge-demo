@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.6'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.springdoc.openapi-gradle-plugin' version '1.9.0'
+}
+
+group = 'com.mostdevwill'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+    implementation 'io.swagger.parser.v3:swagger-parser:2.1.23'
+    implementation 'io.swagger.core.v3:swagger-core-jakarta:2.2.6'
+//    implementation 'io.swagger.core.v3:swagger-models:2.2.26'
+//    implementation 'io.swagger.core.v3:swagger-models-jakarta:2.2.26'
+
+//    implementation 'io.swagger.core.v3:swagger-annotations:2.2.26'
+//    implementation 'io.swagger:swagger-parser:1.0.72'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
