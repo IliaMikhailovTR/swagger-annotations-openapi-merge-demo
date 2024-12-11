@@ -23,6 +23,7 @@ import org.springdoc.webmvc.api.OpenApiWebMvcResource;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -55,5 +56,13 @@ public class SwaggerResourceController extends OpenApiWebMvcResource {
 
         return writeJsonValue(annotationsOpenAPI);
 //        return annotationsOpenAPIBytes;
+    }
+
+    @GetMapping("/custom-swagger-json")
+    public byte[] getJson() throws JsonProcessingException {
+        SwaggerParseResult result = new OpenAPIParser().readLocation("static/openapi-product.yaml", null, null);
+        OpenAPI fileOpenAPI = result.getOpenAPI();
+
+        return writeJsonValue(fileOpenAPI);
     }
 }
